@@ -3,7 +3,14 @@ import random
 
 enemy = random.choice(['Troll', 'Dragon', 'Ogre'])
 items = []
+damage_roll = random.randint(1, 50)
 
+def damage(damage_roll):
+    if 'sword' in items:
+        damage_roll += 100
+        print_pause("You swing and do " + str(damage_roll) + "damage to your foe")
+    else:
+        print_pause("You swing and do " + str(damage_roll) + " damage to your foe")
 
 def print_pause(message_to_print):
     print(message_to_print)
@@ -105,7 +112,8 @@ def fight(items, enemy):
                     "timing and reflexes. The " + enemy + " now in the \n"
                     "middle of its attack and off balance is not prepared \n"
                     "for what's to come. You swing Asgoloth with all your \n"
-                    "might and it bites into flesh, the " + enemy + " \n"
+                    "might and it bites into flesh, " 
+                    +  damage(damage_roll) + "the " + enemy + " \n"
                     "screams out in pain as it's life force is drained by \n"
                     "Asgoloth's sting. After a moment of struggle \n"
                     "the " + enemy + " drops to the ground, defeated. You "
@@ -116,7 +124,8 @@ def fight(items, enemy):
                     "beast. As the " + enemy + " is about to attack you \n"
                     "slide out of the way, the " + enemy + " is not fooled \n"
                     "and in quicker than it appears. You swipe at it with \n"
-                    "your dagger but just nick it's skin, not enough to \n"
+                    "your dagger but just nick it's skin, "
+                     + damage(damage_roll) + " not enough to \n"
                     "injure it greatly but enough to anger it. \n"
                     "The" + enemy + " grabs your feet as you are unbalanced \n"
                     "from your failed counter attack, he lifts you in the \n"
@@ -127,15 +136,15 @@ def fight(items, enemy):
 
     choice = input("Would you like to play again y/n?")
     if choice == 'y':
-        play_game(items, enemy)
+        play_game(items, enemy, damage_roll)
     elif choice == 'n':
         print_pause("Thank you for playing!")
     else:
         print_pause("I didn't recongnize your answer please choose y/n.")
 
 
-def play_game(items, enemy):
+def play_game(items, enemy, damage_roll):
     intro(enemy)
 
 
-play_game(items, enemy)
+play_game(items, enemy, damage_roll)
